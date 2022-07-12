@@ -13,7 +13,7 @@ body {
     Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   min-height: 1280px;
   color: #3b3b3b;
-  font-size: 26px;
+  font-size: 32px;
 }
 
 p,
@@ -114,7 +114,7 @@ nav {
 }
 
 #intro {
-  margin-bottom: 320px;
+  margin-bottom: 300px;
 }
 
 #outro {

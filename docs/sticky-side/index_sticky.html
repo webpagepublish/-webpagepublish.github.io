@@ -46,10 +46,8 @@
 			text-align: center;
 			padding: 1rem;
 			position: absolute;
-			top: 50%;
-			left: 50%;
-			-moz-transform: translate(-50%, -50%);
-			-webkit-transform: translate(-50%, -50%);
+			top: 40%;
+			left: 30%;
 			transform: translate(-50%, -50%);
 			font-size: 8rem;
 			font-weight: 30;
@@ -87,7 +85,9 @@
 			<h1 class="intro__hed">Cybersecurity Network Security Alert</h1>
 			<p class="intro__dek">
 				Big companies suffer cybersecurity attacks every data. 
-				One of the main problems in cybersecurity is to detect intruders 
+				One of the main problems in cybersecurity is to detect intruders.
+				<br>
+				Scroll down to know our story!
 			</p>
 		</section>
 
@@ -97,25 +97,44 @@
 		<div class="step" data-step="1">
 				<br>
 				<br>
+					 <p>Normal behavior of users during working hours and week days</p>      
+				</div>
+				<div class="step" data-step="2">
+									<br>
+				<br>
 				<br>
 				<br>
 				<br>
 					 <p>Normal behavior of users during working hours and week days</p>      
 				</div>
-				<div class="step" data-step="2">
-					<p>STEP 2</p>
 				</div>
 				<div class="step" data-step="3">
-					<p>STEP 3</p>
+									<br>
+				<br>
+				<br>
+				<br>
+				<br>
+					 <p>Normal behavior of users during working hours and week days</p>      
+				</div>
 				</div>
 				<div class="step" data-step="4">
-					<p>STEP 4</p>
+									<br>
+				<br>
+				<br>
+				<br>
+				<br>
+					 <p>Normal behavior of users during working hours and week days</p>      
+				</div>
 				</div>
 			</article>
 
 			<figure>
-				<p>0</p>
+				
+				<div class='tableauPlaceholder' id='viz1657598155050' style='position: relative'><noscript><a href='https:&#47;&#47;berkeleyvis.static.observableusercontent.com&#47;'><img alt='Log-On Behavior During Working Hours and Days  ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Lo&#47;Log-OnBehaviorDuringWorkingHoursandDays&#47;Sheet1&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='Log-OnBehaviorDuringWorkingHoursandDays&#47;Sheet1' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Lo&#47;Log-OnBehaviorDuringWorkingHoursandDays&#47;Sheet1&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en-EN' /><param name='increment_view_count' value='no' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1657598155050');                    var vizElement = divElement.getElementsByTagName('object')[0];                    vizElement.style.width='100%';vizElement.style.height=(divElement.offsetWidth*0.70)+'px';                    var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                </script>
 			</figure>
+			 
+
+			
 		</section>
 
 		<section id="outro"></section>
@@ -124,11 +143,12 @@
 	<!-- <div class='debug'></div> -->
 	<script src="https://unpkg.com/d3@5.9.1/dist/d3.min.js"></script>
 	<script src="../scrollama.min.js"></script>
+	<script src="../main.js"></script>
 	<script>
 		// using d3 for convenience
 		var main = d3.select("main");
 		var scrolly = main.select("#scrolly");
-		var figure = scrolly.select("figure");
+		var figure = scrolly.selectAll("figure");
 		var article = scrolly.select("article");
 		var step = article.selectAll(".step");
 

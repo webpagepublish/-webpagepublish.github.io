@@ -1,18 +1,39 @@
 <!DOCTYPE html>
 <html>
 
-
-
-
 <head>
-  <link rel="stylesheet" href="style.css" />
-  <div class="tab">
-  <button class="tablinks" onclick="openTab(event, 'Networks')" id="defaultOpen">Network </button>
-  <button class="tablinks" onclick="openTab(event, 'Heatmaps')">Log on Activity</button>  
-  <button class="tablinks" onclick="openTab(event, 'User Behavior')">User Behavior</button> 
-  <button class="tablinks" onclick="openTab(event, 'Log On Adjacency Matrix')">Log On Adjacency Matrix</button>
-  
-  		<style>
+	<meta charset="UTF-8">
+	<link rel="stylesheet"
+		  href="style.css" />
+	<link rel="icon"
+		  href="favicon.svg">
+	<meta http-equiv="X-UA-Compatible"
+		  content="IE=edge" />
+	<title>Cybersecurity Log-In Analysis</title>
+	<meta name="description"
+		  content="Cybersecurity Log-In Analysis" />
+	<meta name="viewport"
+		  content="width=device-width, initial-scale=1" />
+</head>
+
+<body>
+	<div class="tab">
+		<button class="tablinks"
+				onclick="openTab(event, 'Overview')"
+				id="defaultOpen"><img src="home.svg"
+				 style="width: 24px; position: absolute; top: 12px;"> <span style="padding-left: 2rem;">
+				AuthSpotter</span>
+		</button>
+		<button class="tablinks"
+				onclick="openTab(event, 'Networks')">Network </button>
+		<button class="tablinks"
+				onclick="openTab(event, 'Heatmaps')">Log on Activity</button>
+		<button class="tablinks"
+				onclick="openTab(event, 'User Behavior')">User Behavior</button>
+		<button class="tablinks"
+				onclick="openTab(event, 'Log On Adjacency Matrix')">User-Computer Matrix</button>
+
+		<style>
 			#scrolly {
 				position: relative;
 				display: -webkit-box;
@@ -78,149 +99,346 @@
 				padding: 1rem;
 				font-size: 1.5rem;
 			}
+
+			p {
+				margin-bottom: 1rem;
+			}
+
 		</style>
-		
 
-  </div>
-	  
-	  
-	  	<div id="Networks" class="tabcontent">
-	  <h1 class="intro__hed"> Log On Networks given the time of the day </h1>
-	  <figure>
-<iframe width="100%" height="1600" frameborder="0"
-  src="https://observablehq.com/embed/ce66022839b5d60a?cell=*"></iframe>
+
+	</div>
+
+	<div id="Overview"
+		 class="tabcontent"
+		 style="max-width: 60rem; margin-left: auto; margin-right: auto;">
+		<div style="color: white; background-color: #F55E61; text-align: center; padding: 1.5rem;">
+			<h1 class="intro__hed">AuthSpotter:</h1>
+			<h2>Visualizing Suspicious Logon Behavior</h2>
+		</div>
+
+		<div style="text-align: center; font-size: 18pt; font-weight: bold; margin-top: 1rem;">
+			<p style="text-align: center; margin: 0;">Berkeley MIDS W209 &mdash; Final Project</p>
+			<p style="text-align: center; margin: 0;">
+				Andrés de la Rosa, Mark Haase, Chang Liu, & Brendan Mattina
+			</p>
+		</div>
+
+		<h4 style="margin: 2rem 1rem;">Overview</h4>
+
+		<div style="font-size: 12pt; margin: 1rem; column-count: 2;">
+			<p><strong>AuthSpotter is a data visualization project created by four
+					students in the U.C. Berkeley Masters in Data Science (MIDS) program for the
+					W209 Data Visualization and Communication course.</strong> The goal of this project is to use data
+				visualization techniques in a
+				cybersecurity context: to understand normal patterns of user logon behavior
+				and identify unusual or suspicious logon behavior. In a real-world scenario,
+				suspicious behavior could be analyzed further by looking at more detailed
+				logs and/or interviewing the user in question.</p>
+			<p>The dataset used in this project is a free dataset (A. D. Kent,
+				“Comprehensive,
+				Multi-Source Cybersecurity Events,”</a>
+				Los Alamos National Laboratory, <a
+				   href="http://dx.doi.org/10.17021/1179829">http://dx.doi.org/10.17021/1179829</a>,
+				2015.) that contains logon activity at the Los Alamos National
+				Laboratory over a 58 day period. The data includes a variety of
+				authentication protocols, local and remote logons, local and domain
+				accounts, and success/fail disposition.
+			</p>
+			<p>
+				The raw data contains over 1 billion log events in CSV format. It is
+				7.1GB and 69GB decompressed. In order to work with this data in web-based
+				applications, our team adopted several strategies to reduce the data
+				size down to approximately 40MB:
+			</p>
+			<ul>
+				<li><strong>Drop records where the authenticating party is a computer account.</strong>
+					On Windows domains, each computer has its own credentials for accessing
+					domain resources. These accounts end with a dollar sign and generate a
+					large volume of activity.</li>
+				<li><strong>Drop records where the logon type is not in the set
+						("Network", "Interactive", "NetworkCleartext", "RemoteInteractive",
+						"Unlock").</strong> The omitted record types reflect activity that is
+					not interesting for the purpose of finding suspicious behavior.
+				<li><strong>Randomly sample 100 users from the remaining
+						events.</strong> Drop all records where the authenticating party is
+					not in this sample.
+				<li><strong>Encode all strings into a lookup table.</strong> For
+					categorical variables, this provides a huge space savings, since a
+					few strings are used repeatedly. When the data is loaded into the
+					browser, the lookup tables are used to retrieve the appropriate
+					string labels.
+			</ul>
+			<p>
+				The project uses four sets of visualizations to break down the data in
+				ways that are meaningful to our stated task.
+			</p>
+			<ol>
+				<li><strong>Network:</strong> Node-link diagrams that depict small-scale networks of interest.</li>
+				<li><strong>Log on Activity:</strong> Overview of logon behavior faceted on various categorical
+					variables.</li>
+				<li><strong>User Behavior:</strong> Zooming into trace a single user's behavior within the dataset.</li>
+				<li><strong>User-Computer Matrix:</strong> Adjacency matrix diagram that
+					depicts a large-scale network of users logging onto computers.</li>
+			</ol>
+			<p>Each set of views can be accessed using the tabs at the top of this page.</p>
+		</div>
+
+		<div>
+			<h4 style="margin: 2rem 1rem;">Data Dictionary</h4>
+		</div>
+
+		<style>
+			table,
+			th,
+			td {
+				border: 1px solid;
+				border-collapse: collapse;
+				text-align: left;
+			}
+
+			th {
+				background-color: #ddd;
+			}
+
+			th,
+			td {
+				padding: 0.5rem;
+			}
+
+		</style>
+		<table style="font-size: 12pt; margin: 2rem 1rem;">
+			<thead>
+				<tr>
+					<th>Field</th>
+					<th>Description</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Time</td>
+					<td>The timestamp of the event, in seconds elapsed since the beginning of the data capture, whichis
+					</td>
+				</tr>
+				<tr>
+					<td>Source user@domain</td>
+					<td>The authenticating party. The format starts with the username,
+						then an "@" symbol. The final component of the source user is where
+						the account is defined, either on a Windows domain (starting with
+						"DOM") or on a local computer (starting with "C").</td>
+				</tr>
+				<tr>
+					<td>Destination user@domain</td>
+					<td>The account that the user is authenticating into. This is not
+						necessarily the same as the source user, e.g. "johndoe" might log on
+						to a remote system as "administrator".</td>
+				</tr>
+				<tr>
+					<td>Source computer</td>
+					<td>The computer where the authentication event originates.</td>
+				</tr>
+				<tr>
+					<td>Destination computer</td>
+					<td>The computer that the user is authenticating to. If this is
+						different from source computer, then it is a remote logon.</td>
+				</tr>
+				<tr>
+					<td>Authentication type</td>
+					<td>The authentication protocol used, e.g. Kerberos, Negotiate, or NTLM.</td>
+				</tr>
+				<tr>
+					<td>Logon type</td>
+					<td>The nature of the logon, e.g. Unlock, Interactive, Network.</td>
+				</tr>
+				<tr>
+					<td>Success / Failure</td>
+					<td>Indicates if the logon was successful. Failed logons could be
+						due to bad password, locked account, etc.</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<div id="Networks"
+		 class="tabcontent">
+		<h1 class="intro__hed"> Log On Networks given the time of the day </h1>
+		<figure>
+			<iframe width="100%"
+					height="1600"
+					frameborder="0"
+					src="https://observablehq.com/embed/ce66022839b5d60a?cell=*"></iframe>
 		</figure>
-		</div>
-		
-	  
-	  
-	  <div id="Heatmaps" class="tabcontent">
-	  <h1 class="intro__hed"> Log On Activity and Heatmaps</h1>
-	  <figure>
-		<div class='tableauPlaceholder' id='viz1657608391505' style='position: relative'><noscript><a href='https:&#47;&#47;berkeleyvis.static.observableusercontent.com&#47;'><img alt='Logon Success Dashboard ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;W2&#47;W209FinalProject_16571168547180&#47;Dashboard1&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='W209FinalProject_16571168547180&#47;Dashboard1' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;W2&#47;W209FinalProject_16571168547180&#47;Dashboard1&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en-US' /><param name='filter' value='publish=yes' /><param name='increment_view_count' value='no' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1657608391505');                    var vizElement = divElement.getElementsByTagName('object')[0];                    if ( divElement.offsetWidth > 800 ) { vizElement.style.width='100%';vizElement.style.height=(divElement.offsetWidth*0.75)+'px';} else if ( divElement.offsetWidth > 500 ) { vizElement.style.width='100%';vizElement.style.height=(divElement.offsetWidth*0.75)+'px';} else { vizElement.style.width='100%';vizElement.style.height='1877px';}                     var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                
-		</script>
+	</div>
+
+	<div id="Heatmaps"
+		 class="tabcontent">
+		<h1 class="intro__hed"> Log On Activity and Heatmaps</h1>
+		<figure>
+			<div class='tableauPlaceholder'
+				 id='viz1657608391505'
+				 style='position: relative'><noscript><a
+					   href='https:&#47;&#47;berkeleyvis.static.observableusercontent.com&#47;'><img
+							 alt='Logon Success Dashboard '
+							 src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;W2&#47;W209FinalProject_16571168547180&#47;Dashboard1&#47;1_rss.png'
+							 style='border: none' /></a></noscript><object class='tableauViz'
+						style='display:none;'>
+					<param name='host_url'
+						   value='https%3A%2F%2Fpublic.tableau.com%2F' />
+					<param name='embed_code_version'
+						   value='3' />
+					<param name='site_root'
+						   value='' />
+					<param name='name'
+						   value='W209FinalProject_16571168547180&#47;Dashboard1' />
+					<param name='tabs'
+						   value='no' />
+					<param name='toolbar'
+						   value='yes' />
+					<param name='static_image'
+						   value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;W2&#47;W209FinalProject_16571168547180&#47;Dashboard1&#47;1.png' />
+					<param name='animate_transition'
+						   value='yes' />
+					<param name='display_static_image'
+						   value='yes' />
+					<param name='display_spinner'
+						   value='yes' />
+					<param name='display_overlay'
+						   value='yes' />
+					<param name='display_count'
+						   value='yes' />
+					<param name='language'
+						   value='en-US' />
+					<param name='filter'
+						   value='publish=yes' />
+					<param name='increment_view_count'
+						   value='no' />
+				</object></div>
+			<script type='text/javascript'>                    var divElement = document.getElementById('viz1657608391505'); var vizElement = divElement.getElementsByTagName('object')[0]; if (divElement.offsetWidth > 800) { vizElement.style.width = '100%'; vizElement.style.height = (divElement.offsetWidth * 0.75) + 'px'; } else if (divElement.offsetWidth > 500) { vizElement.style.width = '100%'; vizElement.style.height = (divElement.offsetWidth * 0.75) + 'px'; } else { vizElement.style.width = '100%'; vizElement.style.height = '1877px'; } var scriptElement = document.createElement('script'); scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js'; vizElement.parentNode.insertBefore(scriptElement, vizElement);
+			</script>
 		</figure>
+	</div>
+
+	<div id="User Behavior"
+		 class="tabcontent">
+		<h1 class="intro__hed"> User Behavior</h1>
+		<p class="intro__dek">
+			This visualization shows users patterns and behaviours inside the network.
+			<br>
+			<br>
+		</p>
+		<figure>
+			<div class='tableauPlaceholder'
+				 id='viz1657999426209'
+				 style='position: relative'><noscript><a href='#'><img alt='User Observation '
+							 src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Bo&#47;Book1_16575998997830&#47;UserObservation&#47;1_rss.png'
+							 style='border: none' /></a></noscript><object class='tableauViz'
+						style='display:none;'>
+					<param name='host_url'
+						   value='https%3A%2F%2Fpublic.tableau.com%2F' />
+					<param name='embed_code_version'
+						   value='3' />
+					<param name='site_root'
+						   value='' />
+					<param name='name'
+						   value='Book1_16575998997830&#47;UserObservation' />
+					<param name='tabs'
+						   value='no' />
+					<param name='toolbar'
+						   value='yes' />
+					<param name='static_image'
+						   value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Bo&#47;Book1_16575998997830&#47;UserObservation&#47;1.png' />
+					<param name='animate_transition'
+						   value='yes' />
+					<param name='display_static_image'
+						   value='yes' />
+					<param name='display_spinner'
+						   value='yes' />
+					<param name='display_overlay'
+						   value='yes' />
+					<param name='display_count'
+						   value='yes' />
+					<param name='language'
+						   value='es-ES' />
+				</object></div>
+			<script type='text/javascript'>                    var divElement = document.getElementById('viz1657999426209'); var vizElement = divElement.getElementsByTagName('object')[0]; if (divElement.offsetWidth > 800) { vizElement.style.width = '100%'; vizElement.style.height = (divElement.offsetWidth * 0.75) + 'px'; } else if (divElement.offsetWidth > 500) { vizElement.style.width = '100%'; vizElement.style.height = (divElement.offsetWidth * 0.75) + 'px'; } else { vizElement.style.width = '100%'; vizElement.style.height = '1477px'; } var scriptElement = document.createElement('script'); scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js'; vizElement.parentNode.insertBefore(scriptElement, vizElement);
+			</script>
+			<br>
+			<br>
+		</figure>
+		<h1 class="intro__hed"> User Behavior by Log-On Type</h1>
+		<figure>
+			<div class='tableauPlaceholder'
+				 id='viz1657999491943'
+				 style='position: relative'><noscript><a href='#'><img alt='Connection Dashboard '
+							 src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Bo&#47;Book2_16576844579890&#47;ConnectionDashboard&#47;1_rss.png'
+							 style='border: none' /></a></noscript><object class='tableauViz'
+						style='display:none;'>
+					<param name='host_url'
+						   value='https%3A%2F%2Fpublic.tableau.com%2F' />
+					<param name='embed_code_version'
+						   value='3' />
+					<param name='site_root'
+						   value='' />
+					<param name='name'
+						   value='Book2_16576844579890&#47;ConnectionDashboard' />
+					<param name='tabs'
+						   value='no' />
+					<param name='toolbar'
+						   value='yes' />
+					<param name='static_image'
+						   value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Bo&#47;Book2_16576844579890&#47;ConnectionDashboard&#47;1.png' />
+					<param name='animate_transition'
+						   value='yes' />
+					<param name='display_static_image'
+						   value='yes' />
+					<param name='display_spinner'
+						   value='yes' />
+					<param name='display_overlay'
+						   value='yes' />
+					<param name='display_count'
+						   value='yes' />
+					<param name='language'
+						   value='es-ES' />
+				</object></div>
+			<script type='text/javascript'>                    var divElement = document.getElementById('viz1657999491943'); var vizElement = divElement.getElementsByTagName('object')[0]; if (divElement.offsetWidth > 800) { vizElement.style.width = '100%'; vizElement.style.height = (divElement.offsetWidth * 0.75) + 'px'; } else if (divElement.offsetWidth > 500) { vizElement.style.width = '100%'; vizElement.style.height = (divElement.offsetWidth * 0.75) + 'px'; } else { vizElement.style.width = '100%'; vizElement.style.height = '1027px'; } var scriptElement = document.createElement('script'); scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js'; vizElement.parentNode.insertBefore(scriptElement, vizElement);
+			</script>
+		</figure>
+
+		<br>
+
+	</div>
+
+	<div id="Log On Adjacency Matrix"
+		 class="tabcontent">
+		<h1 class="intro__hed"> User-Computer Matrix</h1>
+		<p class="intro__dek">
+			Analyzing which users logged onto each computer.</p>
+		<div style="font-size: 12pt; max-width: 40rem; margin-left: auto; margin-right: auto;">
+			<p style="font-weight: bold;">Instructions:</p>
+			<p>The anonymized usernames
+				are displayed
+				across the top and the anonymized computer names are displayed on the left side.
+				Each box represents a specific user logging onto a specific computer at least once. Hover over a box to
+				see
+				exactly how many logons, or click on a box to highlight it.
+			</p>
 		</div>
-	
-	  <div id="User Behavior" class="tabcontent">
-	  <h1 class="intro__hed"> User Behavior</h1>
-	  <p class="intro__dek">
-		This visualization shows users patterns and behaviours inside the network. 
-			<br>
-			<br>
-				</p>	
-	  <figure>
-	  <div class='tableauPlaceholder' id='viz1657999426209' style='position: relative'><noscript><a href='#'><img alt='User Observation ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Bo&#47;Book1_16575998997830&#47;UserObservation&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='Book1_16575998997830&#47;UserObservation' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Bo&#47;Book1_16575998997830&#47;UserObservation&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='es-ES' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1657999426209');                    var vizElement = divElement.getElementsByTagName('object')[0];                    if ( divElement.offsetWidth > 800 ) { vizElement.style.width='100%';vizElement.style.height=(divElement.offsetWidth*0.75)+'px';} else if ( divElement.offsetWidth > 500 ) { vizElement.style.width='100%';vizElement.style.height=(divElement.offsetWidth*0.75)+'px';} else { vizElement.style.width='100%';vizElement.style.height='1477px';}                     var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                
-	  </script>
-	  <br>
-	  <br>
-	  </figure>
-	  <h1 class="intro__hed"> User Behavior by Log-On Type</h1>
-	  <figure> 
-	  <div class='tableauPlaceholder' id='viz1657999491943' style='position: relative'><noscript><a href='#'><img alt='Connection Dashboard ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Bo&#47;Book2_16576844579890&#47;ConnectionDashboard&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='Book2_16576844579890&#47;ConnectionDashboard' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Bo&#47;Book2_16576844579890&#47;ConnectionDashboard&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='es-ES' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1657999491943');                    var vizElement = divElement.getElementsByTagName('object')[0];                    if ( divElement.offsetWidth > 800 ) { vizElement.style.width='100%';vizElement.style.height=(divElement.offsetWidth*0.75)+'px';} else if ( divElement.offsetWidth > 500 ) { vizElement.style.width='100%';vizElement.style.height=(divElement.offsetWidth*0.75)+'px';} else { vizElement.style.width='100%';vizElement.style.height='1027px';}                     var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                
-	  </script>
-	  </figure>
-	  
-	  <br> 
-	  
-		</div>
-
-	<div id="Log On Adjacency Matrix" class="tabcontent">
-		<h1 class="intro__hed"> Log On Adjacency Matrix</h1>
-			<p class="intro__dek">
-			This visualization shows which users logged onto which computers. The anonymized usernames are displayed across the top and the anonymized computer names are displayed on the left side.
-			Each box represents a specific user logging onto a specific computer at least once. Hover over a box to see exactly how many logons, or click on a box to highlight it.
-			<br>
-			<br>
-				</p>	
-	  <figure>
-	  <iframe width="100%" height="1500" frameborder="0"
-			src="https://observablehq.com/embed/ee27d7c5066a3a5a?cells=svg%2Cviewof+compSort%2Cviewof+userSort%2Cviewof+sliceSize%2Cviewof+colorBy"></iframe>
-	   </figure>
-		</div>
-
-
-	
-		<meta charset="utf-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<title>Cybersecurity Log-In Analysis</title>
-		<meta name="description" content="Cybersecurity Log-In Analysis" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		
-
+		<figure>
+			<iframe width="100%"
+					height="1500"
+					frameborder="0"
+					src="https://observablehq.com/embed/ee27d7c5066a3a5a?cells=svg%2Cviewof+compSort%2Cviewof+userSort%2Cviewof+sliceSize%2Cviewof+colorBy"></iframe>
+		</figure>
+	</div>
 	</head>
 
-<!-- Tab content -->
+	<!-- Tab content -->
 
 
-		<!-- <div class='debug'></div> -->
-		<script src="https://unpkg.com/d3@5.9.1/dist/d3.min.js"></script>
-		<script src="scrollama.min.js"></script>
-		<script src="tabs.js"></script>
-		
-		<script>
-			// using d3 for convenience
-			var main = d3.select("main");
-			var scrolly = main.select("#scrolly");
-			var figure = scrolly.selectAll("figure");
-			var article = scrolly.select("article");
-			var step = article.selectAll(".step");
+	<!-- <div class='debug'></div> -->
+	<script src="https://unpkg.com/d3@5.9.1/dist/d3.min.js"></script>
+	<script src="tabs.js"></script>
 
-			// initialize the scrollama
-			var scroller = scrollama();
-
-			// generic window resize listener event
-			function handleResize() {
-				// 1. update height of step elements
-				var stepH = Math.floor(window.innerHeight * 0.75);
-				step.style("height", stepH + "px");
-
-				var figureHeight = window.innerHeight / 2;
-				var figureMarginTop = (window.innerHeight - figureHeight) / 2;
-
-				figure
-					.style("height", figureHeight + "px")
-					.style("top", figureMarginTop + "px");
-
-				// 3. tell scrollama to update new element dimensions
-				scroller.resize();
-			}
-
-			// scrollama event handlers
-			function handleStepEnter(response) {
-				console.log(response);
-				// response = { element, direction, index }
-
-				// add color to current step only
-				step.classed("is-active", function (d, i) {
-					return i === response.index;
-				});
-
-				// update graphic based on step
-				figure.select("p").text(response.index + 1);
-			}
-			
-			function init() {
-
-				// 1. force a resize on load to ensure proper dimensions are sent to scrollama
-				handleResize();
-
-				// 2. setup the scroller passing options
-				// 		this will also initialize trigger observations
-				// 3. bind scrollama event handlers (this can be chained like below)
-				scroller
-					.setup({
-						step: "#scrolly article .step",
-						offset: 0.33,
-						debug: false
-					})
-					.onStepEnter(handleStepEnter);
-			}
-
-			// kick things off
-			init();
-		</script>
-
-
+</body>
 
 </html>

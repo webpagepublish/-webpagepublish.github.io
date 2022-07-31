@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html>
+
+
+
+
+<head>
+  <link rel="stylesheet" href="style.css" />
+  <div class="tab">
+  <button class="tablinks" onclick="openTab(event, 'Networks')">Network </button>
+  <button class="tablinks" onclick="openTab(event, 'Heatmaps')">Log on Activity</button>  
+  <button class="tablinks" onclick="openTab(event, 'User Behavior')">User Behavior</button> 
+  <button class="tablinks" onclick="openTab(event, 'Log On Adjacency Matrix')">Log On Adjacency Matrix</button>
+  
+  		<style>
+			#scrolly {
+				position: relative;
+				display: -webkit-box;
+				display: -ms-flexbox;
+				display: flex;
+				background-color: #f3f3f3;
+				padding: 1rem;
+			}
+
+			#scrolly>* {
+				-webkit-box-flex: 1;
+				-ms-flex: 1;
+				flex: 1;
+			}
+
+			article {
+				position: relative;
+				padding: 0 1rem;
+				max-width: 20rem;
+			}
+
+			figure {
+				position: -webkit-sticky;
+				position: sticky;
+				width: 100%;
+				margin: 0;
+				-webkit-transform: translate3d(0, 0, 0);
+				-moz-transform: translate3d(0, 0, 0);
+				transform: translate3d(0, 0, 0);
+				background-color: #FFFFFF;
+				z-index: 0;
+			}
+
+			figure p {
+				text-align: center;
+				padding: 1rem;
+				position: absolute;
+				top: 40%;
+				left: 30%;
+				transform: translate(-50%, -50%);
+				font-size: 8rem;
+				font-weight: 30;
+				color: #fff;
+			}
+
+			.step {
+				margin: 0 auto 2rem auto;
+				background-color: #3b3b3b;
+				color: #fff;
+			}
+
+			.step:last-child {
+				margin-bottom: 0;
+			}
+
+			.step.is-active {
+				background-color: goldenrod;
+				color: #3b3b3b;
+			}
+
+			.step p {
+				text-align: center;
+				padding: 1rem;
+				font-size: 1.5rem;
+			}
+		</style>
+		
+  
+  </div>
+	  <div id="Heatmaps" class="tabcontent">
+	  <h1 class="intro__hed"> Log On Activity and Heatmaps</h1>
+	  <figure>
+		<div class='tableauPlaceholder' id='viz1657608391505' style='position: relative'><noscript><a href='https:&#47;&#47;berkeleyvis.static.observableusercontent.com&#47;'><img alt='Logon Success Dashboard ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;W2&#47;W209FinalProject_16571168547180&#47;Dashboard1&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='W209FinalProject_16571168547180&#47;Dashboard1' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;W2&#47;W209FinalProject_16571168547180&#47;Dashboard1&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='en-US' /><param name='filter' value='publish=yes' /><param name='increment_view_count' value='no' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1657608391505');                    var vizElement = divElement.getElementsByTagName('object')[0];                    if ( divElement.offsetWidth > 800 ) { vizElement.style.width='100%';vizElement.style.height=(divElement.offsetWidth*0.75)+'px';} else if ( divElement.offsetWidth > 500 ) { vizElement.style.width='100%';vizElement.style.height=(divElement.offsetWidth*0.75)+'px';} else { vizElement.style.width='100%';vizElement.style.height='1877px';}                     var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                
+		</script>
+		</figure>
+		</div>
+	
+	  <div id="User Behavior" class="tabcontent">
+	  <h1 class="intro__hed"> User Behavior</h1>
+	  <p class="intro__dek">
+		This visualization shows users patterns and behaviours inside the network. 
+			<br>
+			<br>
+				</p>	
+	  <figure>
+	  <div class='tableauPlaceholder' id='viz1657999426209' style='position: relative'><noscript><a href='#'><img alt='User Observation ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Bo&#47;Book1_16575998997830&#47;UserObservation&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='Book1_16575998997830&#47;UserObservation' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Bo&#47;Book1_16575998997830&#47;UserObservation&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='es-ES' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1657999426209');                    var vizElement = divElement.getElementsByTagName('object')[0];                    if ( divElement.offsetWidth > 800 ) { vizElement.style.width='100%';vizElement.style.height=(divElement.offsetWidth*0.75)+'px';} else if ( divElement.offsetWidth > 500 ) { vizElement.style.width='100%';vizElement.style.height=(divElement.offsetWidth*0.75)+'px';} else { vizElement.style.width='100%';vizElement.style.height='1477px';}                     var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                
+	  </script>
+	  <br>
+	  <br>
+	  </figure>
+	  <h1 class="intro__hed"> User Behavior by Log-On Type</h1>
+	  <figure> 
+	  <div class='tableauPlaceholder' id='viz1657999491943' style='position: relative'><noscript><a href='#'><img alt='Connection Dashboard ' src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Bo&#47;Book2_16576844579890&#47;ConnectionDashboard&#47;1_rss.png' style='border: none' /></a></noscript><object class='tableauViz'  style='display:none;'><param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' /> <param name='embed_code_version' value='3' /> <param name='site_root' value='' /><param name='name' value='Book2_16576844579890&#47;ConnectionDashboard' /><param name='tabs' value='no' /><param name='toolbar' value='yes' /><param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Bo&#47;Book2_16576844579890&#47;ConnectionDashboard&#47;1.png' /> <param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' /><param name='display_spinner' value='yes' /><param name='display_overlay' value='yes' /><param name='display_count' value='yes' /><param name='language' value='es-ES' /></object></div>                <script type='text/javascript'>                    var divElement = document.getElementById('viz1657999491943');                    var vizElement = divElement.getElementsByTagName('object')[0];                    if ( divElement.offsetWidth > 800 ) { vizElement.style.width='100%';vizElement.style.height=(divElement.offsetWidth*0.75)+'px';} else if ( divElement.offsetWidth > 500 ) { vizElement.style.width='100%';vizElement.style.height=(divElement.offsetWidth*0.75)+'px';} else { vizElement.style.width='100%';vizElement.style.height='1027px';}                     var scriptElement = document.createElement('script');                    scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                
+	  </script>
+	  </figure>
+	  
+	  <br> 
+	  
+		</div>
+
+	<div id="Log On Adjacency Matrix" class="tabcontent">
+		<h1 class="intro__hed"> Log On Adjacency Matrix</h1>
+			<p class="intro__dek">
+			This visualization shows which users logged onto which computers. The anonymized usernames are displayed across the top and the anonymized computer names are displayed on the left side.
+			Each box represents a specific user logging onto a specific computer at least once. Hover over a box to see exactly how many logons, or click on a box to highlight it.
+			<br>
+			<br>
+				</p>	
+	  <figure>
+	  <iframe width="100%" height="1500" frameborder="0"
+			src="https://observablehq.com/embed/ee27d7c5066a3a5a?cells=svg%2Cviewof+compSort%2Cviewof+userSort%2Cviewof+sliceSize%2Cviewof+colorBy"></iframe>
+	   <figure>
+		</div>
+
+
+	
+		<meta charset="utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<title>Cybersecurity Log-In Analysis</title>
+		<meta name="description" content="Cybersecurity Log-In Analysis" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		
+
+	</head>
+
+<!-- Tab content -->
+
+
+
+	<body>
+
+		<main>
+			<section id="intro">
+				<h1 class="intro__hed">Network Security Visualizer</h1>
+				<p class="intro__dek">
+					Big companies suffer cybersecurity attacks every data. 
+					One of the main problems in cybersecurity is to detect intruders.
+					<br>
+					Scroll down to know our story!
+				</p>
+			</section>
+
+			<section id="scrolly">
+				<article>
+					
+			<div class="step" data-step="1">
+					<br>
+					<br>
+						 <p>Normal behavior of users during working hours and week days</p>      
+					</div>
+					<div class="step" data-step="2">
+										<br>
+					<br>
+					<br>
+					<br>
+					<br>
+						 <p>Normal behavior of users during working hours and week days</p>      
+					</div>
+					<div class="step" data-step="3">
+										<br>
+					<br>
+					<br>
+					<br>
+					<br>
+						 <p>Normal behavior of users during working hours and week days</p>      
+					</div>
+					<div class="step" data-step="4">
+					<br>
+					<br>
+					<br>
+					<br>
+					<br>
+					<p>Normal behavior of users during working hours and week days</p>      
+					</div>
+				</article>
+
+	<figure>
+	<div class='tableauPlaceholder' id='viz1657598155050'
+	style='position: relative'><noscript><a
+	href='https:&#47;&#47;berkeleyvis.static.observableusercontent.com&#47;'>
+	<img alt='Log-On Behavior During Working Hours and Days  ' 
+	src='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Lo&#47;Log-OnBehaviorDuringWorkingHoursandDays&#47;Sheet1&#47;1_rss.png'
+	style='border: none' />
+	</a>
+	</noscript>
+	<object
+	class='tableauViz'  
+	style='display:none;'>
+	<param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
+	<param name='embed_code_version' value='3' />
+	<param name='site_root' value='' />
+	<param name='name' value='Log-OnBehaviorDuringWorkingHoursandDays&#47;Sheet1' />
+	<param name='tabs' value='no' />
+	<param name='toolbar' value='yes' />
+	<param name='static_image' value='https:&#47;&#47;public.tableau.com&#47;static&#47;images&#47;Lo&#47;Log-OnBehaviorDuringWorkingHoursandDays&#47;Sheet1&#47;1.png' />
+	<param name='animate_transition' value='yes' /><param name='display_static_image' value='yes' />
+	<param name='display_spinner' value='yes' />
+	<param name='display_overlay' value='yes' />
+	<param name='display_count' value='yes' />
+	<param name='language' value='en-EN' />
+	<param name='increment_view_count' value='no' />
+	</object>
+	</div> 
+	
+	<script type='text/javascript'>                   
+	var divElement = document.getElementById('viz1657598155050');                    
+	var vizElement = divElement.getElementsByTagName('object')[0];                    
+	vizElement.style.width='100%';vizElement.style.height=(divElement.offsetWidth*0.45)+'px';                    
+	var scriptElement = document.createElement('script');                    
+	scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';                    
+	vizElement.parentNode.insertBefore(scriptElement, vizElement);                
+	</script>
+	</figure>
+		 
+
+				
+		</section>
+
+		<section id="outro"></section>
+				
+		</main>
+
+		<!-- <div class='debug'></div> -->
+		<script src="https://unpkg.com/d3@5.9.1/dist/d3.min.js"></script>
+		<script src="scrollama.min.js"></script>
+		<script src="tabs.js"></script>
+		
+		<script>
+			// using d3 for convenience
+			var main = d3.select("main");
+			var scrolly = main.select("#scrolly");
+			var figure = scrolly.selectAll("figure");
+			var article = scrolly.select("article");
+			var step = article.selectAll(".step");
+
+			// initialize the scrollama
+			var scroller = scrollama();
+
+			// generic window resize listener event
+			function handleResize() {
+				// 1. update height of step elements
+				var stepH = Math.floor(window.innerHeight * 0.75);
+				step.style("height", stepH + "px");
+
+				var figureHeight = window.innerHeight / 2;
+				var figureMarginTop = (window.innerHeight - figureHeight) / 2;
+
+				figure
+					.style("height", figureHeight + "px")
+					.style("top", figureMarginTop + "px");
+
+				// 3. tell scrollama to update new element dimensions
+				scroller.resize();
+			}
+
+			// scrollama event handlers
+			function handleStepEnter(response) {
+				console.log(response);
+				// response = { element, direction, index }
+
+				// add color to current step only
+				step.classed("is-active", function (d, i) {
+					return i === response.index;
+				});
+
+				// update graphic based on step
+				figure.select("p").text(response.index + 1);
+			}
+			
+			function init() {
+
+				// 1. force a resize on load to ensure proper dimensions are sent to scrollama
+				handleResize();
+
+				// 2. setup the scroller passing options
+				// 		this will also initialize trigger observations
+				// 3. bind scrollama event handlers (this can be chained like below)
+				scroller
+					.setup({
+						step: "#scrolly article .step",
+						offset: 0.33,
+						debug: false
+					})
+					.onStepEnter(handleStepEnter);
+			}
+
+			// kick things off
+			init();
+		</script>
+	
+	</body>
+
+
+
+
+
+
+
+
+
+
+
+</html>
